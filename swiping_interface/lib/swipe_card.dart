@@ -1,8 +1,21 @@
 import 'package:flutter/widgets.dart';
 
 class SwipeCard extends StatelessWidget {
-  const SwipeCard({Key? key}) : super(key: key);
+  final String id;
+  final String userName;
+  final int userAge;
+  final String userDescription;
+  final String profileImageSrc;
 
+  const SwipeCard({
+    Key? key,
+    required this.id,
+    required this.userName,
+    required this.userAge,
+    required this.userDescription,
+    required this.profileImageSrc,
+  }) : super(key: key);
+ 
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -12,7 +25,7 @@ class SwipeCard extends StatelessWidget {
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(20.0),
           image: DecorationImage(
-              image: AssetImage('assets/profilepictures/profile_1.jpg'),
+              image: AssetImage(profileImageSrc),
               fit: BoxFit.cover),
         ),
       ),

@@ -24,7 +24,13 @@ class SwipeInterfaceApp extends StatelessWidget {
                     height: 60.0,
                     alignment: Alignment.bottomCenter,
                     child: null),
-                SwipeCard(),
+                SwipeCard(
+                  id: '1111',
+                  userName: 'John',
+                  userAge: 22,
+                  userDescription: "Love bouldering and climbing holidays.",
+                  profileImageSrc: 'assets/profilepictures/profile_1.jpg',
+                ),
                 Container(
                     height: 60.0,
                     alignment: Alignment.bottomCenter,
