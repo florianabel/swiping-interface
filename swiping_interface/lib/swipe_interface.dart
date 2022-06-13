@@ -47,12 +47,36 @@ class _SwipeInterfaceState extends State<SwipeInterface> {
 
   @override
   Widget build(BuildContext context) {
-    return SwipeCard(
-      id: profiles[stackCounter].id,
-      userName: profiles[stackCounter].userName,
-      userAge: profiles[stackCounter].userAge,
-      userDescription: profiles[stackCounter].userDescription,
-      profileImageSrc: profiles[stackCounter].profileImageSrc,
+    return Expanded(
+      child: LayoutBuilder(
+        builder: (context, constraints) => Draggable(
+          feedback: SizedBox(
+            width: constraints.maxWidth,
+            height: constraints.maxHeight,
+            child: SwipeCard(
+              id: profiles[stackCounter].id,
+              userName: profiles[stackCounter].userName,
+              userAge: profiles[stackCounter].userAge,
+              userDescription: profiles[stackCounter].userDescription,
+              profileImageSrc: profiles[stackCounter].profileImageSrc,
+            ),
+          ),
+          childWhenDragging: SwipeCard(
+            id: profiles[stackCounter + 1].id,
+            userName: profiles[stackCounter + 1].userName,
+            userAge: profiles[stackCounter + 1].userAge,
+            userDescription: profiles[stackCounter + 1].userDescription,
+            profileImageSrc: profiles[stackCounter + 1].profileImageSrc,
+          ),
+          child: SwipeCard(
+            id: profiles[stackCounter].id,
+            userName: profiles[stackCounter].userName,
+            userAge: profiles[stackCounter].userAge,
+            userDescription: profiles[stackCounter].userDescription,
+            profileImageSrc: profiles[stackCounter].profileImageSrc,
+          ),
+        ),
+      ),
     );
   }
 }
