@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'profile.dart';
 import 'swipe_card.dart';
 
 class SwipeInterface extends StatefulWidget {
@@ -9,16 +14,45 @@ class SwipeInterface extends StatefulWidget {
 }
 
 class _SwipeInterfaceState extends State<SwipeInterface> {
-  _SwipeInterfaceState();
+  List<Profile> profiles = <Profile>[
+    Profile(
+        id: "222",
+        userName: "Placeholder 1",
+        userAge: 99,
+        userDescription: "Placeholder 1 user description",
+        profileImageSrc: 'assets/profilepictures/placeholder.jpg'),
+    Profile(
+        id: "333",
+        userName: "Placeholder 2",
+        userAge: 99,
+        userDescription: "Placeholder 2 user description",
+        profileImageSrc: 'assets/profilepictures/placeholder.jpg'),
+  ];
+
+  int stackCounter = 0;
+
+  loadJsonData() async {
+    String jsonData = await rootBundle.loadString('assets/json/profiles.json');
+    setState(() {
+      profiles = json
+          .decode(jsonData)
+          .map<Profile>((dataPoint) => Profile.fromJson(dataPoint))
+          .toList();
+    });
+  }
+
+  _SwipeInterfaceState() {
+    loadJsonData();
+  }
 
   @override
   Widget build(BuildContext context) {
     return SwipeCard(
-      id: '1111',
-      userName: 'John',
-      userAge: 22,
-      userDescription: "Love bouldering and climbing holidays.",
-      profileImageSrc: 'assets/profilepictures/profile_1.jpg',
+      id: profiles[stackCounter].id,
+      userName: profiles[stackCounter].userName,
+      userAge: profiles[stackCounter].userAge,
+      userDescription: profiles[stackCounter].userDescription,
+      profileImageSrc: profiles[stackCounter].profileImageSrc,
     );
   }
 }
