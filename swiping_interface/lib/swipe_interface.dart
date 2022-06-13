@@ -30,6 +30,7 @@ class _SwipeInterfaceState extends State<SwipeInterface> {
   ];
 
   int stackCounter = 0;
+  double swipeThreshold = 100.0;
 
   loadJsonData() async {
     String jsonData = await rootBundle.loadString('assets/json/profiles.json');
@@ -45,11 +46,36 @@ class _SwipeInterfaceState extends State<SwipeInterface> {
     loadJsonData();
   }
 
+  void evaluateSwipe(dx) {            
+    if (dx > swipeThreshold) {
+      likeProfile();
+    } else if (dx < -swipeThreshold) {
+      doNotLikeProfile();
+    }
+  }
+
+  void likeProfile() {
+    // do some magic
+    increaseStackCounter();
+  }
+
+  void doNotLikeProfile() {
+    // do some other magic
+    increaseStackCounter();
+  }
+
+  void increaseStackCounter() {
+    setState(() {
+      stackCounter++;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: LayoutBuilder(
         builder: (context, constraints) => Draggable(
+          onDragEnd: (details) => evaluateSwipe(details.offset.dx),
           feedback: SizedBox(
             width: constraints.maxWidth,
             height: constraints.maxHeight,
