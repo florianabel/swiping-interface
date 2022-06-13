@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'swipe_card.dart';
+
 void main() => runApp(const SwipeInterfaceApp());
 
 class SwipeInterfaceApp extends StatelessWidget {
