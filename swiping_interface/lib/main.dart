@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'swipe_card.dart';
+import 'swipe_interface.dart';
 
 void main() => runApp(const SwipeInterfaceApp());
 
@@ -24,13 +24,7 @@ class SwipeInterfaceApp extends StatelessWidget {
                     height: 60.0,
                     alignment: Alignment.bottomCenter,
                     child: null),
-                SwipeCard(
-                  id: '1111',
-                  userName: 'John',
-                  userAge: 22,
-                  userDescription: "Love bouldering and climbing holidays.",
-                  profileImageSrc: 'assets/profilepictures/profile_1.jpg',
-                ),
+                SwipeInterface(),
                 Container(
                     height: 60.0,
                     alignment: Alignment.bottomCenter,
